@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romantik Bahçe</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: #ffffff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .header-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            margin: 20px;
+            z-index: 2;
+        }
+
+        .valentine-note {
+            color: black;
+            padding: 15px 30px;
+            border-radius: 10px;
+            margin-top: -50px;
+            margin-bottom: 10px;
+            z-index: 2;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        .note {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            margin: 10px;
+            max-width: 90%;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .flower {
+            position: fixed;
+            top: -100px;
+            animation: fall 3s linear forwards;
+            z-index: 1;
+            width: 80px;
+            height: 80px;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header-image {
+                width: 120px;
+                height: 120px;
+                margin: 10px;
+            }
+
+            .valentine-note {
+                font-size: 1.2em;
+                margin-top: -20px;
+                padding: 10px 20px;
+            }
+
+            .note {
+                padding: 15px;
+                font-size: 0.9em;
+                margin: 5px;
+            }
+
+            .flower {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="https://i.pinimg.com/236x/30/3a/5c/303a5c656f177a9ccc3fd07e07d5dd10.jpg" alt="Header Image" class="header-image">
+    <div class="valentine-note">
+        <h2>GEÇMİŞ 14 ŞUBAT KUTLAMASI</h2>
+    </div>
+
+    <div class="note">
+        <h2>Denenidim Bişeyler</h2>
+        <p>Düştüğünde, seni kaldıran ben olacağım.</p>
+        <p>Mutlu olduğunda, sevincini ben paylaşacağım.</p>
+        <p>Bir arkadaşa ihtiyacın olduğunda, yanındaki ilk kişi ben olacağım.</p>
+        <p>Seni her zaman seveceğim bitanem</p>
+    </div>
+
+    <script>
+        function createFlower() {
+            const flower = document.createElement('img');
+            flower.className = 'flower';
+
+            const flowerUrls = [
+                'https://i.pinimg.com/236x/f2/a9/59/f2a95953f4d1ece56caa67b0cfce0f2e.jpg',
+                'https://i.pinimg.com/236x/76/16/1f/76161f092378c2f5b1b58504367c0d0a.jpg'
+            ];
+
+            flower.src = flowerUrls[Math.floor(Math.random() * flowerUrls.length)];
+
+            const isSide = Math.random() < 0.5;
+
+            if (isSide) {
+                flower.style.left = Math.random() < 0.5 ? '-100px' : window.innerWidth + 'px';
+                flower.style.top = Math.random() * window.innerHeight + 'px';
+            } else {
+                flower.style.left = Math.random() * window.innerWidth + 'px';
+                flower.style.top = '-100px';
+            }
+
+            document.body.appendChild(flower);
+
+            setTimeout(() => {
+                flower.remove();
+            }, 3000);
+        }
+
+        function startFlowers() {
+            setInterval(createFlower, 300);
+        }
+
+        startFlowers();
+    </script>
+</body>
+</html>
